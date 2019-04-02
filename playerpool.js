@@ -1,12 +1,13 @@
 const MatchMaker = require("./matchmaker.js");
 const WSSManager = require("./wssmanager.js");
 
+const axios = require("axios");
+
 //TODO: Some kind of garbage collection for sessions that are not activated in X time
 
 class PlayerPool extends WSSManager {
   constructor(config) {
     super(config);
-    console.log(this);
     this.matchMaker = new MatchMaker();
   }
 
@@ -46,9 +47,11 @@ class PlayerPool extends WSSManager {
   async createGame(s1, s2) {
     //REST to Game Service
     //Dummy gameId
-    let gameId = parseInt(Math.random()*100000)
-    s1.send(gameId);
-    s2.send(gameId);
+    console.log(s1);
+    console.log(s2);
+    let res = await axios.post("http://localhost:10004/create", {p1: s1.id, p2: s2.id})
+    s1.send(res.data.p1);
+    s2.send(res.data.p2);
     s1.quit = true;
     s2.quit = true;
     setTimeout(() => s1.close(), 1000);

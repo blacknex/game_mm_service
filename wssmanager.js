@@ -22,7 +22,6 @@ class WSSessionManager {
   }
 
   activateSession(sessionId) {
-    console.log(this.sessions);
     let found = this.sessions.filter(s => s.sessionId == sessionId && !s.active);
     if(found.length < 1) throw new Error("Session couldn't be found!");
     found[0].active = true;
@@ -39,7 +38,6 @@ class WSSessionManager {
           session = this.activateSession(msg);
           session.send = msg => conn.send(msg);
           session.close = () => conn.close();
-          console.log(session);
           //Check if rejoin
           if(session.timeout) {
             clearTimeout(session.timeout);

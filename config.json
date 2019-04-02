@@ -2,12 +2,12 @@
     "rest": {
         "port": 10003
     },
-    "tokenService": {
-        "uri": "http://localhost:10002"
-    },
     "playerpool": {
         "ws": {
             "port": 10100
         }
+    },
+    "tokenService": {
+        "uri": "http://localhost:10002"
     }
 }
