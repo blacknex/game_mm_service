@@ -46,13 +46,11 @@ class WSServer {
 				this.playerPool.linkSession(msg => ws.send(msg), () => ws.close(), packet.sessionId);
 				ws.send("Joined successfully!");
 			} catch (err) {
-				console.log(err);
 				ws.send(err.message);
 				setTimeout(() => ws.close(), 500);
 			}
 		})
 		ws.on('close', () => {
-			console.log("wut");
 			this.cleanConnection(sessionId);
 		})
 	}

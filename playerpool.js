@@ -29,7 +29,6 @@ class PlayerPool {
       timeout: null, //Used for stopping clean-up timer in case of not reconnecting
     }
     this.sessions.push(newSession);
-    console.log(this.sessions);
     return newSession.sessionId;
   }
 
@@ -59,8 +58,6 @@ class PlayerPool {
     try {
       //Add to match maker and see if there's a player ready
       let oppId = await this.matchMaker.addPlayer(session.sessionId, params);
-      console.log("------");
-      console.log(oppId);
       if(!oppId) {
         session.send("Waiting for available player...");
         return;
