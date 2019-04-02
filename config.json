@@ -5,7 +5,9 @@
     "tokenService": {
         "uri": "http://localhost:10002"
     },
-    "ws": {
-        "port": 10100
+    "playerpool": {
+        "ws": {
+            "port": 10100
+        }
     }
 }

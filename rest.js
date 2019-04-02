@@ -20,7 +20,7 @@ class REST {
       //Check token
       let userId = await this.tokenService.check(req.body.token);
       //TODO: Check user info
-      let sessionId = await this.playerPool.join(userId);
+      let sessionId = await this.playerPool.addSession(userId);
       //Apply in to pool
       res.send({ sessionId });
     } catch (err) {
